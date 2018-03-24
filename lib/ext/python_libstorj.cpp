@@ -83,7 +83,6 @@ void get_bucket_id_cb(uv_work_t *work_req, int status) {
     if (error_and_status_check<get_bucket_id_request_t>(req, &error_str)) {
         PyDict_SetItemString(bucket_dict, "name", PyString_FromString(req->bucket_name));
         PyDict_SetItemString(bucket_dict, "id", PyString_FromString(req->bucket_id));
-        // TODO: manage encrypted bucket name
     } else {
         error = PyString_FromString(error_str);
     }
@@ -252,10 +251,10 @@ storj_upload_state_t* store_file(storj_env_t *env,
     void *handle = (void *)py_handle;
     storj_upload_state_t *upload_state;
     upload_state = storj_bridge_store_file(env,
-                                             upload_options,
-                                             handle,
-                                             store_file_progress_callback_cb,
-                                             store_file_finished_callback_cb);
+                                           upload_options,
+                                           handle,
+                                           store_file_progress_callback_cb,
+                                           store_file_finished_callback_cb);
     return upload_state;
 }
 
