@@ -26,7 +26,7 @@ class UploadOptions(pystorj.storj_upload_opts_t):
             raise IOError('Path "%s" is not a file.' % file_path)
 
         if file_name is None:
-            file_name = path.dirname(file_path)
+            file_name = path.basename(file_path)
 
         self.prepare_frame_limit = 1
         self.push_frame_limit = 64
